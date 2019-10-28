@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+	 <script src="https://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+	 <script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+
+
+
+  <style>
+    label {	float: left;
+			width: 150px;}
+      #container{
+          width: 700px;
+          margin: auto;
+          background-color: beige;
+      } 
+      main{
+          padding: 50px;
+      }
+	.error{
+		color:red;
+	}
+  </style>
+ </head>
+ <body>
+ <script>
+
+	 $().ready(function() {
+		 var validator = $("#form1").validate({
+			 errorPlacement: function (error, element) {
+				 // Append error within linked label
+				 $(element)
+						 .closest("form")
+						 .find("label[for='" + element.attr("id") + "']")
+						 .append(error);
+			 },
+
+			 errorElement: "span",
+			 messages: {
+				 firstName: {
+					 required: " Required!",
+				 },
+				 lastName: {
+					 required: "Required!",
+				 },
+				 phoneNumber: {
+					 required: "Please enter phone number!",
+					 pattern:"Incorrect"
+
+				 },
+				 zipCode: {
+					 required: "Please enter zip code!",
+
+				 },
+
+				 emailId: {
+					 required:"Please enter email!",
+					 email:"Incorrect email!"
+				 },
+				 source: "Please select a source",
+
+				 comments: "Please enter comments!"
+			 }
+		 });
+		 $("#firstName").blur(function() {
+			 var fn = $("#firstName").val(); //
+			 //以1开头的正则表达式
+			 var re1 = /[a-zA-Z]/;
+
+			 if(!re1.test(fn))
+				 document.getElementById("spanF").style.display ="inline";
+
+			 else if(re1.test(fn)){
+				 document.getElementById("spanF").style.display ="none";
+
+			 }
+		 });
+
+		 $("#lastName").blur(function() {
+			 var ln = $("#lastName").val(); //
+			 //以1开头的正则表达式
+			 var re2 = /[a-zA-Z]/;
+
+			 if(!re2.test(ln))
+				 document.getElementById("spanL").style.display ="inline";
+
+			 else if(re2.test(ln)){
+				 document.getElementById("spanL").style.display ="none";
+
+			 }
+		 });
+
+		 $("#phoneNumber").blur(function() {
+			 var p = $("#phoneNumber").val(); //
+			 //以1开头的正则表达式
+			 var aa = /^1\d{9}$/
+
+			 if(!aa.test(p) || p.length != 10) {
+				 document.getElementById("spanPhone").style.display ="inline";
+			 }
+			 else if(aa.test(p)){
+				 document.getElementById("spanPhone").style.display ="none";
+
+			 }
+		 });
+		 $("#emailId").blur(function() {
+			 var e = $("#emailId").val(); //
+
+			 var re = /[a-zA-Z0-9]+@+[a-zA-Z0-9]+\.+[a-zA-Z0-9]/;
+
+			 if(!re.test(e)) {
+				 document.getElementById("spanEmail").style.display ="inline";
+			 }
+			 else
+				 document.getElementById("spanEmail").style.display ="none";
+
+
+		 });
+		 $("#source1").change(function() {
+
+			 var inputs = document.getElementsByName("source[]");
+			 var checked_counts = 0;
+			 for(var i=0;i<inputs.length;i++) {
+
+				 if (inputs[i].checked) {
+
+					 checked_counts++;
+				 }
+			 }
+			 if(checked_counts!= 0)
+				 document.getElementById("spanSource").style.display = "none";
+			 else{
+				 document.getElementById("spanSource").style.display = "inline";
+			 }
+
+			 });
+		 $("#source2").change(function() {
+
+			 var inputs = document.getElementsByName("source[]");
+			 var checked_counts = 0;
+			 for(var i=0;i<inputs.length;i++) {
+
+				 if (inputs[i].checked) {
+
+					 checked_counts++;
+				 }
+			 }
+			 if(checked_counts!= 0)
+				 document.getElementById("spanSource").style.display = "none";
+			 else{
+				 document.getElementById("spanSource").style.display = "inline";
+			 }
+
+		 });
+		 $("#source3").change(function() {
+
+			 var inputs = document.getElementsByName("source[]");
+			 var checked_counts = 0;
+			 for(var i=0;i<inputs.length;i++) {
+
+				 if (inputs[i].checked) {
+
+					 checked_counts++;
+				 }
+			 }
+			 if(checked_counts!= 0)
+				 document.getElementById("spanSource").style.display = "none";
+			 else{
+				 document.getElementById("spanSource").style.display = "inline";
+			 }
+
+		 })
+	 });
+
+
+
+
+
+ </script>
+
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form class ="form" method="post" id="form1" action="">
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
+			<input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
+			<input type="radio" name="title" id="mrs" value="mrs" required="required"/>Mrs.
+			<br><br>
+			<label for="firstName">First Name*:</label>
+			<input type="text" name="firstName" id="firstName" minlength="2" placeholder="First Name" required/>
+			 <span style="color: mediumorchid; display: none;" id="spanF">Should have alphabet !</span>
+			<br><br>
+			
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" minlength="2" placeholder="Last Name" required/>
+			 <span style="color: mediumorchid; display: none;" id="spanL">Should have alphabet !</span>
+			<br><br>
+			
+
+			<label for="emailId">Email Id*:</label>
+			<input type="email" name="emailId" id="emailId" placeholder="yourname@domain.com" required/>
+			 <span style="color: mediumorchid; display: none;" id="spanEmail">Email should have"@" and"."!</span>
+			<br><br>
+			
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="number" name="phoneNumber" id="phoneNumber" minlength="10" maxlength="10"  pattern="/^1\d{9}$/" placeholder="xxx-xxx-xxxx" required/>
+			 <span style="color: mediumorchid; display: none;" id="spanPhone">Starting with 1!</span>
+			<br><br>
+			
+            <label for="zipCode">ZipCode*:</label>
+			<input type="number" name="zipCode" id="zipCode" minlength="5" maxlength="5" placeholder="xxxxxx" required/>
+			<br><br>
+
+
+			 <fieldset id="newsletter_topics">
+				 <legend>How did you hear*:</legend>
+				 <label for="source1">
+					 <input type="checkbox" id="source1" name="source[]" value="facebook"/> Facebook
+				 </label>
+				 <label for="source2">
+					 <input type="checkbox" id="source2" name="source[]" value="google" /> Google
+				 </label>
+				 <label for="source3">
+					 <input type="checkbox" id="source3" name="source[]" value="yelp" /> Yelp
+				 </label><br>
+				 <span id="spanSource" style="color: chocolate" >You should choose one source!</span>
+			 </fieldset>
+			<br><br> 
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="comments" id="comments" placeholder="Your comments" rows="5" cols="25" required></textarea>
+			<br><br>
+			<input type="Submit">Submit
+			<input type="Reset">Reset
+			<br><br>
+		 </form>
+	 </main>
+ </div>
+
+ <script>
+ 
+ </script>
+
+ </body>
+</html>
