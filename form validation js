@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+	 <script src="myjs.js"></script>
+  <style>
+	  .table-a table{border:1px solid darkgreen;
+		  font-family: "Times New Roman", Times, serif}
+	  .table-a table td{
+		  background-color: palevioletred;
+		  color: floralwhite;
+	  }
+    label {	float: left;
+			width: 150px;}
+      #container{
+          width: 700px;
+          margin: auto;
+          background-color: beige;
+      } 
+      main{
+          padding: 50px;
+      }
+  </style>
+
+ </head>
+ <body>
+ <script>
+ function checkForm() {
+
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("emailId").value;
+    var phone = document.getElementById("phoneNumber").value;
+    var zip = document.getElementById("zipCode").value;
+    var comment = document.getElementById("comments").value;
+    var select=document.getElementById("mySelect").value;
+
+        if(firstName == null || firstName == ""){
+            alert("First Name Required");
+            return false;
+        }
+        return true;
+    if(lastName == null || lastName == ""){
+        alert("Last Name Required");
+        return false;
+    }
+    return true;
+    if(email == null || email == ""){
+        alert("Email Required");
+        return false;
+    }
+    return true;
+    if(phone == null || phone == ""){
+        alert("Phone Number Required");
+        return false;
+    }
+    return true;
+    if(zip == null || zip == ""){
+        alert("ZipCode Required");
+        return false;
+    }
+    return true;
+    if(comment == null || comment == ""){
+        alert("Comment Required");
+        return false;
+    }
+    return true;
+
+
+
+
+
+}
+function fnChange() {
+    var fn = document.form1.firstName;
+    var reg=/^[a-zA-Z0-9]{0,10}$/;
+    if(fn.value.search(reg) == -1){
+        fn.focus();
+        alert("Incorrect First Name");
+    }
+    else if(fn.value == ''){
+        alert("First Name Required");
+    }
+}
+function laChange() {
+    var la = document.form1.lastName;
+    var reg=/^[a-zA-Z0-9]{0,10}$/;
+    if(la.value.search(reg) == -1){
+        la.focus();
+        alert("Incorrect Last Name");
+    }
+    else if(la.value == ''){
+        alert("Last Name Required");
+    }
+}
+
+
+function emailChange(){
+    // var emailId = this.value;
+    var email = document.form1.emailId;
+    var reg =/[a-zA-Z0-9]+@+[a-zA-Z0-9]+\.+[a-zA-Z0-9]/;
+    if(email.value.search(reg) == -1){
+        email.focus();
+        document.getElementById("spanEmailId").style.display ="inline";
+    }
+    else if(email.value == ''){
+        document.getElementById("spanEmailId").innerHTML = "can not be empty";
+    }
+    else{
+        document.getElementById("spanEmailId").style.display = "none";
+
+    }
+}
+
+function phoneChange(){
+    // var emailId = this.value;
+    var phone = document.form1.phoneNumber;
+    var reg =/^[5,6,7,8,9][0-9]{9}$/;
+    if(phone.value.search(reg) == -1){
+        phone.focus();
+        document.getElementById("spanPhone").style.display ="inline";
+    }
+    else{
+        document.getElementById("spanPhone").style.display = "none";
+
+    }
+}
+
+function zipChange(){
+    // var emailId = this.value;
+    var zip = document.form1.zipCode;
+    var reg =/^[0-9]{5}$/;
+    if(zip.value.search(reg) == -1){
+        zip.focus();
+        document.getElementById("spanZip").style.display ="inline";
+    }
+    else{
+        document.getElementById("spanZip").style.display = "none";
+
+    }
+}
+
+ </script>
+ 
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form method="post" action="" name="form1" onsubmit="return checkForm()">
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="Miss" required="required"/>Miss
+			<input type="radio" name="title" id="mr" value="Mr." required="required"/>Mr.
+			<input type="radio" name="title" id="mrs" value="Mrs" required="required"/>Mrs.
+			<br><br>
+			<label for="firstName">First Name*:</label>
+			<input type="text" name="firstName" id="firstName" placeholder="First Name"  onchange="fnChange()" required="required"/>
+			<br><br>
+			
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" placeholder="Last Name" onchange="laChange()" required="required"/>
+			<br><br>
+			
+
+			<label for="emailId">Email Id*:</label>
+			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" onchange="emailChange()"  required="required"/>
+			 <span style="color: Red; display: none;" id="spanEmailId">Please input the correct Email!</span><br><br>
+			
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="number" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" onchange="phoneChange()" required="required"/>
+			 <span style="color: Red; display: none;" id="spanPhone">Please input the correct Phone Number!</span><br><br>
+			
+            <label for="zipCode">ZipCode*:</label>
+			<input type="number" name="zipCode" id="zipCode" placeholder="xxxxxx"  onchange="zipChange()" required="required"/>
+			 <span style="color: Red; display: none;" id="spanZip">Please input the correct Zip Code!</span><br><br>
+             
+            <label >How did you hear*:</label><br>
+			<label for="f"><input type='checkbox'  id ="f" name="source" value="facebook" /> Facebook</label>
+			 <label for="g"><input type='checkbox'  id ="g" name="source" value="google" /> Google</label>
+			 <label for="y"><input type='checkbox'  id ="y" name="source" value="yelp" /> Yelp</label>
+			<br><br> 
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25"  required="required"></textarea>
+			<br><br>
+			 <div id="drinks">Drinks
+				 <select id="mySelect" onchange="testChange(this)">
+					 <!--	 <option value="select">"&#45;&#45;&#45;&#45;&#45;&#45;please select&#45;&#45;&#45;&#45;&#45;&#45;"</option>-->
+
+					 <option value="milk tea">Milk Tea</option>
+					 <option value="hot coffee">Hot Coffee</option>
+					 <option value="hot chocolate"> Hot Chocolate</option>
+					 <option value="juice">Juice</option>
+					 <option value="espresso">Espresso</option>
+
+
+				 </select><br>
+
+				 <input type="checkbox" id ="cb" value="Large Drink(extra)">
+				 <span style="color: pink" id="spanCb">Large Drink(extra)</span>
+				 <input type="checkbox" id ="cb1" value="Add Ice(extra)">
+				 <span style="color: blue; " id="spanCb1">Add Ice(extra)</span>
+
+			 </div>
+
+			<input type="Submit" name="submit" onclick="myFunction()">
+			<input type="Reset" name="'reset">
+			<br><br>
+
+		 </form>
+	 </main>
+ </div>
+
+
+
+ <script>
+	 function testChange() {
+		 var s = document.getElementById("mySelect").value;
+
+
+		 // var val = s.options[index].value;
+		 if (s == "milk tea") {
+			 alert("You want a " + s + " There's a large drink option!");
+
+			 document.getElementById("cb").disabled = "false";
+			 document.getElementById("cb1").disabled = "false";
+			 document.getElementById("spanCb").style.display = "inline";
+			 document.getElementById("spanCb1").style.display = "inline";
+
+		 } else {
+			 document.getElementById("cb").disabled = "true";
+			 document.getElementById("cb1").disabled = "true";
+			 document.getElementById("spanCb").style.display = "none";
+			 document.getElementById("spanCb1").style.display = "none";
+
+		 }
+
+	 }
+
+	 function myFunction() {
+		 var title=document.getElementsByName("title");
+		 var objarray1=title.length;
+		 var t="";
+		 for (i=0;i<objarray1;i++)
+			 if(title[i].checked == true)
+			 {
+				 t+=title[i].value+" ";
+			 }
+
+
+
+		 var firstName = document.getElementById("firstName").value;
+		 var lastName = document.getElementById("lastName").value;
+		 var email = document.getElementById("emailId").value;
+		 var phone = document.getElementById("phoneNumber").value;
+		 var zip = document.getElementById("zipCode").value;
+		 var comment = document.getElementById("comments").value;
+		 var select=document.getElementById("mySelect").value;
+		 var c =document.getElementById("cb");
+		 var c1 =document.getElementById("cb1");
+		 var size ="";
+		 var ice = "";
+		 if(c.checked){
+		 	size =document.getElementById("cb").value;
+		 }
+		 else{
+		 	size ="";
+		 }
+		 if(c1.checked){
+			 ice =document.getElementById("cb1").value;
+		 }
+		 else{
+			 ice ="";
+		 }
+
+
+		 var how=document.getElementsByName("source");
+		 var objarray=how.length;
+		 var chestr="";
+		 for (i=0;i<objarray;i++)
+			 if(how[i].checked == true)
+			 {
+				 chestr+=how[i].value+" ";
+			 }
+
+
+		 var myWindow = window.open("", "_self");
+
+		 window.document.write("<h1>The information you just submitted is as follows !</h1><br><br>")
+
+
+		 window.document.write("<table border=\"1\" align=\"center\" >")
+		 window.document.write(" <thead>")
+
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Title</th>")
+		 window.document.write("<td>"+t+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>First Name</th>")
+		 window.document.write("<td>"+firstName+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Last Name</th>")
+		 window.document.write("<td>"+lastName+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Email</th>")
+		 window.document.write("<td>"+email+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Phone Number</th>")
+		 window.document.write("<td>"+phone+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Zip Code</th>")
+		 window.document.write("<td>"+zip+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>How did you hear</th>")
+		 window.document.write("<td>"+chestr+"</td>")
+		 window.document.write("</tr>")
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Comment</th>")
+		 window.document.write("<td>"+comment+"</td>")
+		 window.document.write("</tr>")
+
+		 window.document.write(" <tr>")
+		 window.document.write("<th>Drink Select</th>")
+		 window.document.write("<td>"+select+" "+size+" "+ice+"</td>")
+		 window.document.write("</tr>")
+
+
+		 window.document.write("</thead>")
+		 window.document.write("<tbody class = 'table-a'>")
+		 window.document.write("</tbody>")
+		 window.document.write("</table>")
+
+
+
+
+	 }
+ </script>
+
+
+
+
+ </body>
+</html>
